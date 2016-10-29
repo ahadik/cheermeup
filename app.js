@@ -1,11 +1,19 @@
 const randomPuppy = require('random-puppy');
+/*
+  Config file returns  an object with the following keys:
+    twilio_sid
+    twilio_token
+    twilio_number : a number you've purchased on Twilio
+    recipients : an array of objects of the following structure:
+      number : phone number of recipient
+      name
+*/
 const config = require('./private/config.js');
 const twilio = require('twilio')(config.twilio_sid, config.twilio_token);
 const request = require("request-promise");
 
 function sendMessage(url, message){
   for (recipient of config.recipients){
-    console.log(url, message);
     let messageObject = {
       to: recipient.number,
       from:config.twilio_number,
@@ -16,10 +24,18 @@ function sendMessage(url, message){
       messageObject.mediaUrl = url;
     }
 
-    twilio.messages.create(messageObject, function(err, message) {
-        console.log(err);
-        console.log(message);
-    });
+    try {
+      twilio.messages.create(messageObject, function(err, message) {
+        if (err){
+          throw err;
+        }else{
+          console.log(message);
+        }
+      });
+    }
+    catch(err) {
+      console.error(err);
+    }
   }
 }
 
