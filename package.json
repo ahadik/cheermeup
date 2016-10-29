@@ -2,7 +2,7 @@
   "name": "cheermeup",
   "version": "1.0.0",
   "scripts": {
-    "babel": "babel index.js --out-file index-compiled.js"
+    "babel": "babel app.js --out-file index.js"
   },
   "devDependencies": {
     "babel-cli": "^6.0.0",
