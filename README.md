@@ -5,7 +5,7 @@ This node module is configured to run as an AWS Lambda function. It was created 
 
 With a Twilio API key and phone number, and a source of messages formatted like Una's Happy Moments, this AWS Lambda function can send three types of text messages - a text message drawn from the desired source, a photo of a puppy from the `random-puppy` Node module, or a message containing both.
 
-The function is triggered with an AWS IoT Button. One click sends a message, two clicks send a puppy, and a long press sends both.
+The function is triggered with an AWS IoT Button. One click sends a message, two clicks sends a puppy picture, and a long press sends both.
 
 ###Configuration
 
@@ -19,7 +19,7 @@ Copy the config example file and fill in your own details: `cp ./private/config_
 
 If you want to activate this Lambda function with an AWS IoT Button, purchase one from Amazon and go through the configuration steps provided.
 
-You'll then need to upload the code and dependencies as  ZIP file to AWS Lambda:
+You'll then need to upload the code and dependencies as a ZIP file to AWS Lambda:
 
 1. Run `npm install --production` to install the minimum required dependencies.
 2. In a file browser, select `index.js`, `node_modules/` and `private/` and compress them into a ZIP Archive. DO NOT compress the directory itself. For one, this will contain the Git history which will make the archive too large to upload to AWS Lambda. It will also un-archive into a directory that then contains the necessary files. AWS Lambda expects the ZIP File to un-archive into the necessary files alone without a wrapping directory.
