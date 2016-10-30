@@ -1,3 +1,5 @@
+'use strict';
+
 const randomPuppy = require('random-puppy');
 /*
   Config file returns  an object with the following keys:
@@ -13,7 +15,7 @@ const twilio = require('twilio')(config.twilio_sid, config.twilio_token);
 const request = require("request-promise");
 
 function sendMessage(url, message){
-  for (recipient of config.recipients){
+  for (let recipient of config.recipients){
     let messageObject = {
       to: recipient.number,
       from:config.twilio_number,
@@ -51,13 +53,13 @@ async function getMessage(){
     };
 
     const response = await request(options);
-    //return an array of happy moments
     return Object.keys(response).map(date => {
       return response[date];
     });
   });
+
   let moments = [];
-  for (promise of moment_promises){
+  for (let promise of moment_promises){
     moments.push(await promise);
   }
   const flat_moments = [].concat.apply([], moments);
@@ -85,3 +87,5 @@ exports.handler = (event, context, callback) => {
   console.log("Received click of type:", event.clickType);
   compose(event.clickType);
 }
+
+compose('SINGLE');

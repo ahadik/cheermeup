@@ -1,3 +1,5 @@
+'use strict';
+
 let getMessage = (() => {
   var _ref = _asyncToGenerator(function* () {
     const urls = ['https://raw.githubusercontent.com/una/personal-goals/master/happy-moments/2015_happy-moments.json', 'https://raw.githubusercontent.com/una/personal-goals/master/happy-moments/2016_happy-moments.json'];
@@ -12,7 +14,6 @@ let getMessage = (() => {
         };
 
         const response = yield request(options);
-        //return an array of happy moments
         return Object.keys(response).map(function (date) {
           return response[date];
         });
@@ -22,8 +23,9 @@ let getMessage = (() => {
         return _ref2.apply(this, arguments);
       };
     })());
+
     let moments = [];
-    for (promise of moment_promises) {
+    for (let promise of moment_promises) {
       moments.push((yield promise));
     }
     const flat_moments = [].concat.apply([], moments);
@@ -75,7 +77,7 @@ const twilio = require('twilio')(config.twilio_sid, config.twilio_token);
 const request = require("request-promise");
 
 function sendMessage(url, message) {
-  for (recipient of config.recipients) {
+  for (let recipient of config.recipients) {
     let messageObject = {
       to: recipient.number,
       from: config.twilio_number,
@@ -104,3 +106,5 @@ exports.handler = (event, context, callback) => {
   console.log("Received click of type:", event.clickType);
   compose(event.clickType);
 };
+
+compose('SINGLE');
