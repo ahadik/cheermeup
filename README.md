@@ -1,7 +1,7 @@
 #Cheer Me Up
 ##An AWS IoT Button Project
 
-This node module is configured to run as an AWS Lambda function. It was created as a small gift to a friend, [Una Kravets](http://www.github.com/una) using her Happy Moments open source project, in which she details a happy moment from each day and posts it to a [GitHub repository](https://github.com/una/personal-goals/tree/master/happy-moments).
+This node module is configured to run as an AWS Lambda function. It was created as a small gift to a friend, [Una Kravets](www.github.com/una) using her Happy Moments open source project, in which she details a happy moment from each day and posts it to a [GitHub repository](https://github.com/una/personal-goals/tree/master/happy-moments).
 
 With a Twilio API key and phone number, and a source of messages formatted like Una's Happy Moments, this AWS Lambda function can send three types of text messages - a text message drawn from the desired source, a photo of a puppy from the `random-puppy` Node module, or a message containing both.
 
