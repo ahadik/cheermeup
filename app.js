@@ -90,7 +90,7 @@ async function getMessage(){
     const response = await request(options);
     //Return flat array of messages as strings, omitting dates
     return Object.keys(response).map(date => {
-      return response[date];
+      return (response[date] + ' -- ' + date);
     });
   });
   //Wait on each promise to resolve to an array of strings, in order
